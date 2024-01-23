@@ -11,11 +11,11 @@ module.exports = {
     }
     return result;
   },
-  update: async function (body) {
+  getAllPost: async function (id) {
     let result = {};
     try {
-      result.data = await Post.findByIdAndUpdate(id, { $set: req.body}, { new: true });
-      result.message = "Post Updated Successfully";
+      result.data = await Post.find({}).populate('userId');
+      result.message = "Post list retrived Successfully";
     } catch (error) {
       result.err = error;
     }
@@ -26,6 +26,16 @@ module.exports = {
     try {
       result.data = await Post.findOne({_id:id});
       result.message = "Post retrived Successfully";
+    } catch (error) {
+      result.err = error;
+    }
+    return result;
+  },
+  getPostByUserId: async function (id) {
+    let result = {};
+    try {
+      result.data = await Post.find({userId:id});
+      result.message = "Post retrived by User Successfully";
     } catch (error) {
       result.err = error;
     }

@@ -5,7 +5,7 @@ require("dotenv").config();
 
 
 const user = require("./routes/user.route");
-
+const post = require("./routes/post.routes")
 
 // connecting with database
 const mongoose = require("mongoose");
@@ -19,6 +19,7 @@ app.use('/uploads', express.static('uploads'))
 const PORT = process.env.PORT || 3005;
 // Routes 
 app.use("/api/user", user);
+app.use("/api/post", post);
 
 
 
